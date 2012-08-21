@@ -1,0 +1,23 @@
+package de.dlh.lht.wd.base.bpm.client.pageobject;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+
+public class TasklistSearchSaveDialogPageObject extends VaadinPageObject {
+
+    public TasklistSearchSaveDialogPageObject(WebDriver driver) {
+        super(driver);
+    }
+
+    public MainPage saveWithName(String name) {
+        textboxIn(dialog()).sendKeys(name);
+        buttonIn(dialog(), "Speichern").click();
+        return new MainPage(driver());
+    }
+
+    private WebElement dialog() {
+        return allModalDialogs().get(1);
+    }
+
+}

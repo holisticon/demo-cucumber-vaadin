@@ -1,0 +1,127 @@
+package de.dlh.lht.wd.base.bpm.client.pageobject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.google.common.base.Predicate;
+
+
+public class TasklistSearchDialogPageObject extends VaadinPageObject {
+
+    private CustomCriteria recentCriteria = CustomCriteria.CRITERIA_1;
+
+    public TasklistSearchDialogPageObject(WebDriver driver) {
+        super(driver);
+    }
+
+    public String getTitle() {
+        return driver().findElement(By.className("v-window-header")).getText();
+    }
+
+    public TasklistSearchDialogPageObject select(String caption) {
+        allDropDownButtons().get(recentCriteria.ordinal() + 1).click();
+        for (WebElement item : allDropDownItems()) {
+            if (item.getText().equals(caption)) {
+                item.click();
+                return this;
+            }
+        }
+        throw new NoSuchElementException(String.format("kein Dropdown Eintrag %s gefunden", caption));
+    }
+
+    public TasklistSearchDialogPageObject custom(CustomCriteria criteria) {
+        this.recentCriteria = criteria;
+        return this;
+    }
+
+    public TasklistSearchDialogPageObject constraint(String caption) {
+        allDropDownButtons().get(recentCriteria.ordinal() + 2).click();
+        for (WebElement item : allDropDownItems()) {
+            if (item.getText().equals(caption)) {
+                item.click();
+                return this;
+            }
+        }
+        throw new NoSuchElementException(String.format("kein Dropdown Eintrag %s gefunden", caption));
+    }
+
+    public TasklistSearchDialogPageObject value(String value) {
+        setText(allTextBoxes().get(recentCriteria.ordinal() + 1), value);
+        return this;
+    }
+
+    public MainPage doSearch() {
+        buttonIn(searchDialog(), "Suchen").click();
+        wait(FIVE_SECONDS).until(new Predicate<WebDriver>() {
+
+            @Override
+            public boolean apply(WebDriver arg0) {
+                return allModalDialogs().isEmpty();
+            }
+        });
+        return new MainPage(driver());
+    }
+
+    public boolean isVisible() {
+        try {
+            return searchDialog() != null;
+        }
+        catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public VaadinPageObject includeUndefinedDueDates(boolean expectedState) {
+        WebElement checkBox = driver().findElement(By.className("v-checkbox")).findElement(By.tagName("input"));
+        while (expectedState != checkBox.isSelected()) {
+            checkBox.click();
+        }
+        return this;
+    }
+
+    public TasklistSearchDialogPageObject createdDateFrom(String date) {
+        setText(allDatePickers().get(0), date);
+        return this;
+    }
+
+    public VaadinPageObject createdDateUntil(String date) {
+        setText(allDatePickers().get(1), date);
+        return this;
+    }
+
+    public TasklistSearchDialogPageObject dueDateFrom(String date) {
+        setText(allDatePickers().get(2), date);
+        return this;
+
+    }
+
+    public VaadinPageObject dueDateUntil(String date) {
+        setText(allDatePickers().get(3), date);
+        return this;
+    }
+
+    public TasklistSearchSaveDialogPageObject doSave() {
+        buttonIn(searchDialog(), "Speichern").click();
+        return new TasklistSearchSaveDialogPageObject(driver());
+    }
+
+    public String selection() {
+        return allDropDownTextBoxes().get(recentCriteria.ordinal() + 1).getText();
+    }
+
+    private WebElement searchDialog() {
+        return allModalDialogs().get(0);
+    }
+
+    public enum CustomCriteria {
+        CRITERIA_1,
+        CRITERIA_2,
+        CRITERIA_3,
+        CRITERIA_4,
+        CRITERIA_5,
+        CRITERIA_6;
+    }
+
+}

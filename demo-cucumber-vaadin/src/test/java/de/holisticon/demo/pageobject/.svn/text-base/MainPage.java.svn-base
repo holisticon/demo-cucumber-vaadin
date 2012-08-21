@@ -1,0 +1,55 @@
+package de.dlh.lht.wd.base.bpm.client.pageobject;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+
+
+public class MainPage extends VaadinPageObject {
+
+    public MainPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public String getTitle() {
+        return title().getText();
+    }
+
+    public String getMasterTitle() {
+        return masterTitle().getText();
+    }
+
+    public String getDetailsTitle() {
+        return detailsTitle().getText();
+    }
+
+    public NavigationTreePageObject navigationTree() {
+        return new NavigationTreePageObject(driver());
+    }
+
+    public VaadinTablePageObject tasklist() {
+        return new VaadinTablePageObject(driver());
+    }
+
+    private WebElement title() {
+        return driver().findElement(By.xpath("//*[@id='dedlhlhtwdbasebpmclient-228995731']/div/div[2]/div/div[1]/div/div/div/div[1]/div/div"));
+    }
+
+    private WebElement masterTitle() {
+        return master().findElement(By.className("v-panel-caption"));
+    }
+
+    private WebElement detailsTitle() {
+        return details().findElement(By.className("v-panel-caption"));
+    }
+
+    private WebElement master() {
+        return driver().findElement(By.className("v-splitpanel-first-container"));
+    }
+
+    private WebElement details() {
+        return driver().findElement(By.className("v-splitpanel-second-container"));
+    }
+}

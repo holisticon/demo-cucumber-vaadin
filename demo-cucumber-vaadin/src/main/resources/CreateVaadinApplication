@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir app
+cd app
+mvn archetype:generate \
+-DarchetypeGroupId=com.vaadin \
+-DarchetypeArtifactId=vaadin-archetype-clean \
+-DarchetypeVersion=LATEST \
+-DgroupId=de.holisticon.demo \
+-DartifactId=demo-cucumber-vaadin-app \
+-Dversion=1.0 \
+-Dpackaging=war
