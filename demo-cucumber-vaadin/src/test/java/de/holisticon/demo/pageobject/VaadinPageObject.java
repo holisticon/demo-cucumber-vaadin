@@ -110,11 +110,11 @@ public class VaadinPageObject {
     }
 
     public VaadinPageObject doRightClickOn(WebElement item) {
-        new Actions(driver()).contextClick(item).perform();
+        new Actions(browser()).contextClick(item).perform();
         return this;
     }
 
-    public WebDriver driver() {
+    public WebDriver browser() {
         return this.driver;
     }
 
@@ -138,7 +138,7 @@ public class VaadinPageObject {
     }
 
     public WebDriverWait wait(int seconds) {
-        return new WebDriverWait(driver(), seconds);
+        return new WebDriverWait(browser(), seconds);
     }
 
 }

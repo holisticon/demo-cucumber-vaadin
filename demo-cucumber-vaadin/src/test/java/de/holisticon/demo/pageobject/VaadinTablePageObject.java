@@ -17,7 +17,7 @@ public class VaadinTablePageObject extends VaadinPageObject {
 
     public WebElement table() {
         try {
-            return driver().findElement(By.className("v-table"));
+            return browser().findElement(By.className("v-table"));
         }
         catch (Exception ex) {
             return null;

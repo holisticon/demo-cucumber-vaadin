@@ -44,14 +44,14 @@ public class VaadinTreePageObject extends VaadinPageObject {
 
 	public WebElement selection() {
 		try {
-			return driver().findElement(By.className("v-tree-node-selected"));
+			return browser().findElement(By.className("v-tree-node-selected"));
 		} catch (NoSuchElementException ex) {
 			return null;
 		}
 	}
 
 	public List<WebElement> allVisibleItems() {
-		return driver().findElements(By.className(CLASS_NAME_TREE_NODE));
+		return browser().findElements(By.className(CLASS_NAME_TREE_NODE));
 	}
 
 	public List<WebElement> allVisibleItemsBeyond(WebElement webElement) {

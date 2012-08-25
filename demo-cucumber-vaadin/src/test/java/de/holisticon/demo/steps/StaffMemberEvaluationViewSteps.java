@@ -9,34 +9,37 @@ import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import cucumber.runtime.PendingException;
+import cucumber.runtime.ScenarioResult;
 import de.holisticon.demo.ApplicationDriver;
 import de.holisticon.demo.pageobject.VaadinPageObject;
 
 public class StaffMemberEvaluationViewSteps {
 
-	
+	private ApplicationDriver appDriver = new ApplicationDriver();
 	private VaadinPageObject page;
 
 	@Before
 	public void setUp() {
-		page = new ApplicationDriver().start();
+		page = appDriver.start();
 	}
-	
+
 	@After
-	public void cleanUp() {
-		page.driver().close();
+	public void cleanUp(ScenarioResult result) {
+		appDriver.process(result);
+		appDriver.close();
 	}
-	
+
 	@Given("^I'm head of staff$")
 	public void I_m_head_of_staff() throws Throwable {
-		//TODO login
+		// TODO login
 		assertThat(page, is(notNullValue()));
 	}
 
 	@When("^opening the evaluation report view$")
 	public void opening_the_evaluation_report_view() throws Throwable {
 		// Express the Regexp above with the code you wish you had
-		throw new PendingException();
+		// throw new PendingException();
+		throw new RuntimeException("fake error");
 	}
 
 	@Then("^I have access to the reports of all members$")
