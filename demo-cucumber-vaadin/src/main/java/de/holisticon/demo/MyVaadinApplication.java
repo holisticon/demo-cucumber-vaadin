@@ -16,10 +16,14 @@
 package de.holisticon.demo;
 
 import com.vaadin.Application;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
+import com.vaadin.terminal.gwt.server.WebApplicationContext;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.Notification;
+
+import de.holisticon.employeemanager.handler.LoginHandler;
+import de.holisticon.employeemanager.handler.LogoutHandler;
+import de.holisticon.employeemanager.ui.LoginComponent;
+import de.holisticon.employeemanager.ui.MainComponent;
 
 /**
  * The Application's "main" class
@@ -28,20 +32,34 @@ import com.vaadin.ui.Window;
 public class MyVaadinApplication extends Application
 {
     private Window window;
-
+    
     @Override
     public void init()
     {
+    	
+    	ApplicationEventBus.register(new LoginHandler(this));
+    	ApplicationEventBus.register(new LogoutHandler(this));
+    	
         window = new Window("My Vaadin Application");
         setMainWindow(window);
-        Button button = new Button("Click Me");
-        button.addListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                window.addComponent(new Label("Thank you for clicking"));
-            }
-        });
-        window.addComponent(button);
-        
+
+        window.setContent(new LoginComponent());
     }
+
+	public void loginSuccessful() {
+		System.out.println("login success");
+		window.setContent(new MainComponent());
+	}
+
+	public void loginDenied() {
+		System.out.println("login denied");
+		window.showNotification("unbekannter user", Notification.TYPE_ERROR_MESSAGE);
+	}
+
+	public void logout() {
+		window.setContent(new LoginComponent());
+		close();
+//		((WebApplicationContext)getContext()).getHttpSession().invalidate();
+	}
     
 }
