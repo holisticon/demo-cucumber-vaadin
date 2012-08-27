@@ -7,7 +7,6 @@ import cucumber.annotation.Before;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
-import cucumber.runtime.PendingException;
 import cucumber.runtime.ScenarioResult;
 import de.holisticon.demo.ApplicationDriver;
 import de.holisticon.demo.TestContext;
@@ -42,11 +41,7 @@ public class EditTimeTrackingRecordSteps {
 		TimeTrackingEditorPageObject editor = mainPage().openTimeTrackingEditor();
 
 		application().waitForRendering();
-		editor.date(date)
-				.description(description)
-				.timeFrom(timeFrom)
-				.timeUntil(timeUntil)
-				.saveRecord();
+		editor.date(date).description(description).timeFrom(timeFrom).timeUntil(timeUntil).saveRecord();
 	}
 
 	@Then("^the record is saved$")

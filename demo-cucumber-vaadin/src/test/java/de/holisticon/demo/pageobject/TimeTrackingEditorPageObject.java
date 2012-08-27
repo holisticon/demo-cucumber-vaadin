@@ -18,18 +18,18 @@ public class TimeTrackingEditorPageObject extends VaadinPageObject {
 	}
 
 	public TimeTrackingEditorPageObject date(String date) {
-		findById("_dateField").sendKeys(date);
+		findById("_dateField").findElement(By.tagName("input")).sendKeys(date);
 		return this;
 	}
 
 
 	public TimeTrackingEditorPageObject timeFrom(String timeFrom) {
-		findById("_timeFromField").sendKeys(timeFrom);
+		findById("_timeFromField").findElement(By.tagName("input")).sendKeys(timeFrom);
 		return this;
 	}
 
 	public TimeTrackingEditorPageObject timeUntil(String timeUntil) {
-		findById("_timeUntilField").sendKeys(timeUntil);
+		findById("_timeUntilField").findElement(By.tagName("input")).sendKeys(timeUntil);
 		return this;
 	}
 
