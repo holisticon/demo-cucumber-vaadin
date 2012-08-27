@@ -13,15 +13,15 @@ import com.google.common.collect.Lists;
 
 public class VaadinPageObject {
 
-    private final WebDriver driver;
+    private final WebDriver browser;
 
-    public VaadinPageObject(WebDriver driver) {
-        this.driver = driver;
+    public VaadinPageObject(WebDriver browser) {
+        this.browser = browser;
     }
 
     public List<WebElement> allButtons() {
         try {
-            return driver.findElements(By.className("v-button"));
+            return browser.findElements(By.className("v-button"));
         }
         catch (NoSuchElementException e) {
             return Lists.newArrayList();
@@ -30,7 +30,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allButtonsDefault() {
         try {
-            return driver.findElements(By.className("v-button-default"));
+            return browser.findElements(By.className("v-button-default"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -39,7 +39,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allDatePickers() {
         try {
-            return driver.findElements(By.className("v-datefield-textfield"));
+            return browser.findElements(By.className("v-datefield-textfield"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -48,7 +48,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allDropDownButtons() {
         try {
-            return driver.findElements(By.className("v-filterselect-button"));
+            return browser.findElements(By.className("v-filterselect-button"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -57,7 +57,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allDropDownItems() {
         try {
-            return driver.findElements(By.className("gwt-MenuItem"));
+            return browser.findElements(By.className("gwt-MenuItem"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -66,7 +66,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allDropDownTextBoxes() {
         try {
-            return driver.findElements(By.className("v-filterselect-input"));
+            return browser.findElements(By.className("v-filterselect-input"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -75,7 +75,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allModalDialogs() {
         try {
-            return driver.findElements(By.className("v-window-modalform"));
+            return browser.findElements(By.className("v-window-modalform"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -84,7 +84,7 @@ public class VaadinPageObject {
 
     public List<WebElement> allTextBoxes() {
         try {
-            return driver.findElements(By.className("v-textfield"));
+            return browser.findElements(By.className("v-textfield"));
         }
         catch (NoSuchElementException exception) {
             return Lists.newArrayList();
@@ -115,7 +115,7 @@ public class VaadinPageObject {
     }
 
     public WebDriver browser() {
-        return this.driver;
+        return this.browser;
     }
 
     protected boolean not(boolean actual) {

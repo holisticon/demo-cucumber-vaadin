@@ -16,7 +16,6 @@ public class SwitchToTimeTrackingRecordEditorEventHandler {
 
 	@Subscribe
 	public void handleEvent(SwitchToTimeTrackingRecordEditorEvent event) {
-		System.out.println("received " + SwitchToTimeTrackingRecordEditorEvent.class.getName());
 		masterDetails.setSecondComponent(new TimeTrackingEditor());
 	}
 }

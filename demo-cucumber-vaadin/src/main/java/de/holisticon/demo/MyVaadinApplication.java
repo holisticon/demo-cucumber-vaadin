@@ -16,7 +16,6 @@
 package de.holisticon.demo;
 
 import com.vaadin.Application;
-import com.vaadin.terminal.gwt.server.WebApplicationContext;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.Notification;
 
@@ -47,12 +46,10 @@ public class MyVaadinApplication extends Application
     }
 
 	public void loginSuccessful() {
-		System.out.println("login success");
 		window.setContent(new MainComponent());
 	}
 
 	public void loginDenied() {
-		System.out.println("login denied");
 		window.showNotification("unbekannter user", Notification.TYPE_ERROR_MESSAGE);
 	}
 

@@ -13,53 +13,53 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.runtime.ScenarioResult;
-import de.holisticon.demo.pageobject.VaadinPageObject;
+import de.holisticon.demo.pageobject.LoginPage;
 
 public class ApplicationDriver extends ExternalResource {
 
 	public static final String SYSTEM_VIRTUAL_DISPLAY_VARIABLE = "DISPLAY";
 
 	private ApplicationConfig config = new ApplicationConfig();
-	private WebDriver actualDriver;
+	private WebDriver browser;
 
 	@Override
 	protected void before() throws Throwable {
 		super.before();
-		driver();
+		browser();
 	}
 
 	@Override
 	protected void after() {
 		super.after();
-		actualDriver.close();
+		browser.close();
 	}
 
-	public VaadinPageObject start() {
-		driver().get(config.applicationUrl());
-		return new VaadinPageObject(actualDriver);
+	public LoginPage start() {
+		browser().get(config.applicationUrl());
+		return new LoginPage(browser);
 	}
 
-	public WebDriver driver() {
-		if (actualDriver == null) {
+	public WebDriver browser() {
+		if (browser == null) {
 			if (runHeadless()) {
 				FirefoxBinary binary = new FirefoxBinary(new File(config.pathToBrowser()));
 				binary.setEnvironmentProperty(SYSTEM_VIRTUAL_DISPLAY_VARIABLE, config.display());
-				actualDriver = new FirefoxDriver(binary, null);
+				browser = new FirefoxDriver(binary, null);
 			}
 			else {
-				actualDriver = new FirefoxDriver();
+				browser = new FirefoxDriver();
 			}
 		}
-		return actualDriver;
+		return browser;
 	}
 
 	public ApplicationDriver close() {
-		actualDriver.close();
-		actualDriver = null;
+		browser.close();
+		browser = null;
 		return this;
 	}
 
-	public ApplicationDriver process(ScenarioResult result) {
+	public ApplicationDriver processFailureIn(ScenarioResult result) {
 		if (result.getStatus().equals("failed")) {
 			takeScreenshotOf(result);
 		}
@@ -67,12 +67,16 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public ApplicationDriver waitForRendering() {
+		waitSeconds(config.delayForRendering());
+		return this;
+	}
+
+	public void waitSeconds(int seconds) {
 		try {
-			Thread.sleep(1000 * config.delayForRendering());
+			Thread.sleep(1000 * seconds);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return this;
 	}
 
 	private boolean runHeadless() {
@@ -81,7 +85,7 @@ public class ApplicationDriver extends ExternalResource {
 
 	private void takeScreenshotOf(ScenarioResult result) {
 		try {
-			byte[] screenshot = ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+			byte[] screenshot = ((TakesScreenshot) browser()).getScreenshotAs(OutputType.BYTES);
 			result.embed(screenshot, "image/png");
 		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
 			System.err.println(somePlatformsDontSupportScreenshots.getMessage());
@@ -93,7 +97,7 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public ApplicationDriver refresh() {
-		actualDriver.navigate().refresh();
+		browser.navigate().refresh();
 		return this;
 	}
 
