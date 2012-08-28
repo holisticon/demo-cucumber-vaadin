@@ -33,7 +33,7 @@ public class EditTimeTrackingRecordSteps {
 	@Then("^the record is saved$")
 	public void timeTrackingRecordTableContains() throws Throwable {
 		VaadinTablePageObject table = new VaadinTablePageObject(application().browser());
-		assertThat(table.countRows(), is(2));
+		assertThat(table.countRows(), is(1));
 	}
 
 	private MainPage mainPage() {
