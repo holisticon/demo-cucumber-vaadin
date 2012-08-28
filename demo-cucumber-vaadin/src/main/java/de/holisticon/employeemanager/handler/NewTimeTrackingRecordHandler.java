@@ -4,7 +4,7 @@ import com.google.common.eventbus.Subscribe;
 import com.vaadin.ui.Table;
 
 import de.holisticon.employeemanager.event.NewTimeTrackingRecordEvent;
-import de.holisticon.employeemanager.model.TrackingRecord;
+import de.holisticon.employeemanager.model.TimeTrackingRecord;
 
 public class NewTimeTrackingRecordHandler {
 
@@ -16,7 +16,7 @@ public class NewTimeTrackingRecordHandler {
 	
 	@Subscribe
 	public void addTimeTrackingRecord(NewTimeTrackingRecordEvent event) {
-		TrackingRecord model = event.getTrackingRecord();
+		TimeTrackingRecord model = event.getTrackingRecord();
 		view.getContainerDataSource().addItem(model);
 	}
 

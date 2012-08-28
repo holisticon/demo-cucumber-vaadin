@@ -10,25 +10,25 @@ public class TimeTrackingEditorPageObject extends VaadinPageObject {
 		super(driver);
 	}
 
-	public TimeTrackingEditorPageObject description(String description) {
+	public TimeTrackingEditorPageObject fillDescription(String description) {
 		WebElement element = findById("_descriptionField");
 		element.clear();
 		element.sendKeys(description);
 		return this;
 	}
 
-	public TimeTrackingEditorPageObject date(String date) {
+	public TimeTrackingEditorPageObject fillDate(String date) {
 		findById("_dateField").findElement(By.tagName("input")).sendKeys(date);
 		return this;
 	}
 
 
-	public TimeTrackingEditorPageObject timeFrom(String timeFrom) {
+	public TimeTrackingEditorPageObject fillTimeFrom(String timeFrom) {
 		findById("_timeFromField").findElement(By.tagName("input")).sendKeys(timeFrom);
 		return this;
 	}
 
-	public TimeTrackingEditorPageObject timeUntil(String timeUntil) {
+	public TimeTrackingEditorPageObject fillTimeUntil(String timeUntil) {
 		findById("_timeUntilField").findElement(By.tagName("input")).sendKeys(timeUntil);
 		return this;
 	}

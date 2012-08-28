@@ -12,7 +12,7 @@ public class TimeValidator implements Validator {
 
 	public void validate(Object value) throws InvalidValueException {
 		if (!isValid(value)) {
-			throw new InvalidValueException("Datum ungültig");
+			throw new InvalidValueException(String.format("Datum %s ungültig", value));
 		}
 	}
 

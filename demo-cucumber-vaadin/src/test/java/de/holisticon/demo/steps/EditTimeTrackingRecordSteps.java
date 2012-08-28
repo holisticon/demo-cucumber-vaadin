@@ -14,7 +14,7 @@ import de.holisticon.demo.pageobject.VaadinTablePageObject;
 
 public class EditTimeTrackingRecordSteps {
 
-	@Given("^I'm an employee with credentials '(.*)' '(.*)'$")
+	@Given("^I'm an employee with username '(.*)' and password '(.*)'$")
 	public void loginAs(String username, String password) throws Throwable {
 		application().waitForRendering();
 		loginPage().loginAs(username, password);
@@ -27,7 +27,11 @@ public class EditTimeTrackingRecordSteps {
 		TimeTrackingEditorPageObject editor = mainPage().openTimeTrackingEditor();
 
 		application().waitForRendering();
-		editor.date(date).description(description).timeFrom(timeFrom).timeUntil(timeUntil).saveRecord();
+		editor.fillDate(date)
+				.fillDescription(description)
+				.fillTimeFrom(timeFrom)
+				.fillTimeUntil(timeUntil)
+				.saveRecord();
 	}
 
 	@Then("^the record is saved$")
