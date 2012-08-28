@@ -2,12 +2,9 @@ package de.holisticon.demo.steps;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import cucumber.annotation.After;
-import cucumber.annotation.Before;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
-import cucumber.runtime.ScenarioResult;
 import de.holisticon.demo.ApplicationDriver;
 import de.holisticon.demo.TestContext;
 import de.holisticon.demo.pageobject.LoginPage;
@@ -16,17 +13,6 @@ import de.holisticon.demo.pageobject.TimeTrackingEditorPageObject;
 import de.holisticon.demo.pageobject.VaadinTablePageObject;
 
 public class EditTimeTrackingRecordSteps {
-
-	@Before
-	public void setUp() {
-		application().start();
-	}
-
-	@After
-	public void cleanUp(ScenarioResult result) {
-		application().processFailureIn(result);
-		application().close();
-	}
 
 	@Given("^I'm an employee with credentials '(.*)' '(.*)'$")
 	public void loginAs(String username, String password) throws Throwable {

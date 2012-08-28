@@ -54,8 +54,10 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public ApplicationDriver close() {
-		browser.close();
-		browser = null;
+		if(browser!=null){
+			browser.close();
+			browser = null;
+		}
 		return this;
 	}
 
