@@ -5,6 +5,7 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
+
 @SuppressWarnings("serial")
 public class TopicEducation extends CustomComponent {
 

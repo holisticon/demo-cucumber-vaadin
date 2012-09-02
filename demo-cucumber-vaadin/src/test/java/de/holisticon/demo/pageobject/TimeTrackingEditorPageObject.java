@@ -24,12 +24,12 @@ public class TimeTrackingEditorPageObject extends VaadinPageObject {
 
 
 	public TimeTrackingEditorPageObject fillTimeFrom(String timeFrom) {
-		findById("_timeFromField").findElement(By.tagName("input")).sendKeys(timeFrom);
+		findById("_timeFromField").sendKeys(timeFrom);
 		return this;
 	}
 
 	public TimeTrackingEditorPageObject fillTimeUntil(String timeUntil) {
-		findById("_timeUntilField").findElement(By.tagName("input")).sendKeys(timeUntil);
+		findById("_timeUntilField").sendKeys(timeUntil);
 		return this;
 	}
 

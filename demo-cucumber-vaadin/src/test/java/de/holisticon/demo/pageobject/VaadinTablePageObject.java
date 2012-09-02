@@ -2,6 +2,7 @@ package de.holisticon.demo.pageobject;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -59,21 +60,20 @@ public class VaadinTablePageObject extends VaadinPageObject {
         return countRows() == 0;
     }
 
-    public List<WebElement> rows() {
-        return tableContent().findElements(By.className("v-table-row"));
+    public List<List<String>> rows() {
+        List<List<String>> rows = new ArrayList<List<String>>();
+        List<WebElement> webRows = tableContent().findElements(By.className("v-table-row"));
+        for (WebElement webRow : webRows) {
+        	List<String> row = new ArrayList<String>();
+			List<WebElement> fields = webRow.findElements(By.tagName("td"));
+			for (WebElement field : fields) {
+				row.add(field.getText());
+			}
+        	rows.add(row);
+		}
+		return rows;
     }
 
-    public List<List<String>> values() {
-        List<List<String>> tableValues = newArrayList();
-        for (WebElement row : rows()) {
-            List<String> rowValues = newArrayList();
-            for (String value : values(row)) {
-                rowValues.add(value);
-            }
-            tableValues.add(rowValues);
-        }
-        return tableValues;
-    }
 
     public List<String> values(WebElement row) {
         List<String> cells = newArrayList();

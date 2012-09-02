@@ -18,7 +18,7 @@ public class LoginHandler {
 		String username = loginEvent.getLoginParameter("username");
 		String password = loginEvent.getLoginParameter("password");
 		
-		if(username.equals("willi") && password.equals("winzig")){
+		if(username.equals("roland") && password.equals("juelich")){
 			application.loginSuccessful();
 		}
 		else {

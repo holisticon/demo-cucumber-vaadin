@@ -15,6 +15,7 @@
  */
 package de.holisticon.demo;
 
+
 import com.vaadin.Application;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.Notification;

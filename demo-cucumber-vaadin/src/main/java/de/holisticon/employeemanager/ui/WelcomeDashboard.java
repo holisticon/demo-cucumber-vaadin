@@ -5,6 +5,7 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
+
 @SuppressWarnings("serial")
 public class WelcomeDashboard extends CustomComponent {
 

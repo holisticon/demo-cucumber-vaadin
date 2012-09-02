@@ -1,10 +1,15 @@
 package de.holisticon.demo.steps;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import cucumber.annotation.en.Given;
+
+import java.util.List;
+
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
+
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
+import cucumber.table.DataTable;
 import de.holisticon.demo.ApplicationDriver;
 import de.holisticon.demo.TestContext;
 import de.holisticon.demo.pageobject.LoginPage;
@@ -13,12 +18,6 @@ import de.holisticon.demo.pageobject.TimeTrackingEditorPageObject;
 import de.holisticon.demo.pageobject.VaadinTablePageObject;
 
 public class EditTimeTrackingRecordSteps {
-
-	@Given("^I'm an employee with username '(.*)' and password '(.*)'$")
-	public void loginAs(String username, String password) throws Throwable {
-		application().waitForRendering();
-		loginPage().loginAs(username, password);
-	}
 
 	@When("^I record an entry for '(.*)' on '(.*)' from '(.*)' to '(.*)'$")
 	public void recordAnEntry(String description, String date, String timeFrom, String timeUntil) throws Throwable {
@@ -37,7 +36,18 @@ public class EditTimeTrackingRecordSteps {
 	@Then("^the record is saved$")
 	public void timeTrackingRecordTableContains() throws Throwable {
 		VaadinTablePageObject table = new VaadinTablePageObject(application().browser());
-		assertThat(table.countRows(), is(1));
+		assertThat(table.countRows(), CoreMatchers.is(1));
+	}
+
+	@Then("^the saved record is displayed$")
+	public void timeTrackingTableShowsResult(DataTable expected) throws Throwable {
+		List<List<String>> expectedRows = expected.raw();
+		List<List<String>> actualRows = new VaadinTablePageObject(application().browser()).rows();
+		assertThat(actualRows, containsRows(expectedRows));
+	}
+
+	private static Matcher<List<List<String>>> containsRows(final List<List<String>> expected) {
+		return new VaadinTableContentMatcher(expected);
 	}
 
 	private MainPage mainPage() {
