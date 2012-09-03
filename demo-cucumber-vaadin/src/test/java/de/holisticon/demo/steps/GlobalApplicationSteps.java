@@ -1,10 +1,9 @@
 package de.holisticon.demo.steps;
 
+import static de.holisticon.demo.TestContext.application;
 import cucumber.annotation.After;
 import cucumber.annotation.Before;
 import cucumber.runtime.ScenarioResult;
-import de.holisticon.demo.ApplicationDriver;
-import de.holisticon.demo.TestContext;
 
 public class GlobalApplicationSteps {
 
@@ -19,8 +18,5 @@ public class GlobalApplicationSteps {
 		application().close();
 	}
 
-	private ApplicationDriver application() {
-		return TestContext.INSTANCE.getApplication();
-	}
 
 }

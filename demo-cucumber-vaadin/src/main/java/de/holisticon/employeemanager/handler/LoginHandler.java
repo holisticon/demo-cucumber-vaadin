@@ -4,10 +4,13 @@ import com.google.common.eventbus.Subscribe;
 import com.vaadin.ui.LoginForm.LoginEvent;
 
 import de.holisticon.demo.MyVaadinApplication;
+import de.holisticon.employeemanager.service.UserManagementService;
 
 public class LoginHandler {
 
 	private final MyVaadinApplication application;
+	
+	private UserManagementService userManagementService = new UserManagementService();
 
 	public LoginHandler(MyVaadinApplication application) {
 		this.application = application;
@@ -18,11 +21,12 @@ public class LoginHandler {
 		String username = loginEvent.getLoginParameter("username");
 		String password = loginEvent.getLoginParameter("password");
 		
-		if(username.equals("roland") && password.equals("juelich")){
-			application.loginSuccessful();
+		if(userManagementService.exists(username, password)){
+			application.login();
 		}
 		else {
 			application.loginDenied();
 		}
 	}
+	
 }

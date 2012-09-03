@@ -5,15 +5,21 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import java.io.File;
 
 import org.junit.rules.ExternalResource;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.runtime.ScenarioResult;
 import de.holisticon.demo.pageobject.LoginPage;
+import de.holisticon.demo.pageobject.MainPage;
+import de.holisticon.demo.pageobject.VaadinPageObject;
+import de.holisticon.employeemanager.service.UserManagementService;
 
 public class ApplicationDriver extends ExternalResource {
 
@@ -54,7 +60,7 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public ApplicationDriver close() {
-		if(browser!=null){
+		if (browser != null) {
 			browser.close();
 			browser = null;
 		}
@@ -101,6 +107,35 @@ public class ApplicationDriver extends ExternalResource {
 	public ApplicationDriver refresh() {
 		browser.navigate().refresh();
 		return this;
+	}
+
+	public boolean knowsUserWithCredentials(String username, String password) {
+		return new UserManagementService().exists(username, password);
+	}
+
+	public VaadinPageObject currentPage() {
+		if (pageContainsId("_loginComponent")){
+			return new LoginPage(browser);
+		}
+
+		if (pageContainsId("_mainComponent")){
+			return new MainPage(browser);
+		}
+		
+		throw new IllegalStateException("invalid display state, only mainpage or loginpage are allowed");
+
+	}
+
+	private boolean pageContainsId(String id) {
+		return findById(id) != null;
+	}
+
+	private WebElement findById(String id) {
+		try {
+			return browser.findElement(By.id(id));
+		} catch (NoSuchElementException nse) {
+			return null;
+		}
 	}
 
 }

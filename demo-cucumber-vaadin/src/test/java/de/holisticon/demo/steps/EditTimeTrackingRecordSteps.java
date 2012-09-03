@@ -1,5 +1,7 @@
 package de.holisticon.demo.steps;
 
+import static de.holisticon.demo.TestContext.application;
+import static de.holisticon.demo.TestContext.mainPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
@@ -10,10 +12,6 @@ import org.hamcrest.Matcher;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import cucumber.table.DataTable;
-import de.holisticon.demo.ApplicationDriver;
-import de.holisticon.demo.TestContext;
-import de.holisticon.demo.pageobject.LoginPage;
-import de.holisticon.demo.pageobject.MainPage;
 import de.holisticon.demo.pageobject.TimeTrackingEditorPageObject;
 import de.holisticon.demo.pageobject.VaadinTablePageObject;
 
@@ -48,17 +46,5 @@ public class EditTimeTrackingRecordSteps {
 
 	private static Matcher<List<List<String>>> containsRows(final List<List<String>> expected) {
 		return new VaadinTableContentMatcher(expected);
-	}
-
-	private MainPage mainPage() {
-		return new MainPage(application().browser());
-	}
-
-	private LoginPage loginPage() {
-		return new LoginPage(application().browser());
-	}
-
-	private ApplicationDriver application() {
-		return TestContext.INSTANCE.getApplication();
 	}
 }

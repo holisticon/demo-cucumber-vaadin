@@ -1,12 +1,16 @@
 package de.holisticon.demo.pageobject;
 
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends VaadinPageObject {
 
-    public LoginPage(WebDriver browser) {
+    private static final String LOGIN_IFRAME_ID = "PID3";
+
+	public LoginPage(WebDriver browser) {
         super(browser);
     }
 
@@ -28,10 +32,10 @@ public class LoginPage extends VaadinPageObject {
 
     private WebElement loginFrame() {
         try {
-            return browser().findElement(By.name("PID4"));
+            return browser().findElement(By.name(LOGIN_IFRAME_ID));
         }
-        catch (Exception e) {
-            return null;
+        catch (NoSuchElementException e) {
+            throw new IllegalStateException("couldn't find login frame");
         }
     }
 

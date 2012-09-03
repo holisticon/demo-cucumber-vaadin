@@ -46,7 +46,7 @@ public class MyVaadinApplication extends Application
         window.setContent(new LoginComponent());
     }
 
-	public void loginSuccessful() {
+	public void login() {
 		window.setContent(new MainComponent());
 	}
 

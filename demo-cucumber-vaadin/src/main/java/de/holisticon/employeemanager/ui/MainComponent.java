@@ -134,6 +134,7 @@ public class MainComponent extends CustomComponent {
 		setCompositionRoot(mainLayout);
 
 		// TODO add user code here
+		setDebugId("_mainComponent");
 
 		ApplicationEventBus.register(new SwitchToTimeTrackingRecordEditorEventHandler(masterDetails));
 
@@ -144,6 +145,7 @@ public class MainComponent extends CustomComponent {
 				ApplicationEventBus.post(new LogoutEvent());
 			}
 		});
+		
 
 	}
 
