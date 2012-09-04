@@ -2,8 +2,13 @@ package de.holisticon.employeemanager.ui;
 
 import static java.util.Arrays.asList;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.terminal.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -21,7 +26,14 @@ import de.holisticon.employeemanager.model.TimeTrackingRecord;
 @SuppressWarnings("serial")
 public class TimeTrackingForm extends Form {
 
+	private TimeField timeFromField;
+	private TimeField timeUntilField;
+	private Button saveButton;
+
 	public TimeTrackingForm() {
+
+		setDebugId("_timeTrackingForm");
+
 		setWriteThrough(false); // we want explicit 'apply'
 		setInvalidCommitted(false); // no invalid values in datamodel
 		setImmediate(true);
@@ -30,8 +42,19 @@ public class TimeTrackingForm extends Form {
 
 		setFooter(createButtonBarWithSaveButton());
 
+		// validation
+		setValidationVisible(false);
+
 	}
 
+	@Override
+	public void attach() {
+		// TODO Auto-generated method stub
+		super.attach();
+		timeFromField.addListener(new TimeRangeValidator());
+		timeUntilField.addListener(new TimeRangeValidator());
+	}
+	
 	@Override
 	public void setItemDataSource(Item newDataSource) {
 		super.setItemDataSource(newDataSource);
@@ -46,8 +69,8 @@ public class TimeTrackingForm extends Form {
 
 	private HorizontalLayout createButtonBarWithSaveButton() {
 		HorizontalLayout buttonBar = new HorizontalLayout();
-		Button saveButton = new Button("Speichern", new Button.ClickListener() {
-	
+		saveButton = new Button("Speichern", new Button.ClickListener() {
+
 			@SuppressWarnings("unchecked")
 			public void buttonClick(ClickEvent event) {
 				commit();
@@ -60,14 +83,14 @@ public class TimeTrackingForm extends Form {
 		return buttonBar;
 	}
 
-	private final class TimeTrackingFormFieldFactory implements FormFieldFactory {
+	private class TimeTrackingFormFieldFactory implements FormFieldFactory {
+
 		public Field createField(Item item, Object propertyId, Component uiContext) {
 
 			String pid = (String) propertyId;
 
 			if (pid.equals(TimeTrackingRecord.PROP_DATE)) {
 				DateField dateField = new DateField("Datum");
-				dateField.setRequired(true);
 				dateField.setDateFormat("dd.MM.yyyy");
 				dateField.setLenient(true);
 				dateField.setResolution(DateField.RESOLUTION_DAY);
@@ -75,12 +98,12 @@ public class TimeTrackingForm extends Form {
 				return dateField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_FROM)) {
-				TimeField timeFromField = TimeField.createWith("von", "08:00", "Anfangszeit muss angegeben werden");
+				timeFromField = new TimeField("von", "08:00");
 				timeFromField.setDebugId("_timeFromField");
 				return timeFromField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_UNTIL)) {
-				TimeField timeUntilField = TimeField.createWith("bis", "16:30", "Endzeit muss angegeben werden");
+				timeUntilField = new TimeField("bis", "16:30");
 				timeUntilField.setDebugId("_timeUntilField");
 				return timeUntilField;
 			}
@@ -94,6 +117,37 @@ public class TimeTrackingForm extends Form {
 			}
 
 			return null;
+		}
+
+	}
+
+	private final class TimeRangeValidator implements ValueChangeListener {
+
+		public void valueChange(com.vaadin.data.Property.ValueChangeEvent event) {
+			Object fromValue = timeFromField.getValue();
+			Object untilValue = timeUntilField.getValue();
+			if (fromValue != null && untilValue != null) {
+				long from = asTime(fromValue).getTime();
+				long until = asTime(untilValue).getTime();
+				boolean timeRangeNotValid = ((until - from) < 0);
+				if (timeRangeNotValid) {
+					setComponentError(new UserError("Startzeit muss vor Endzeit liegen"));
+					saveButton.setEnabled(false);
+				} else {
+					setComponentError(null);
+					setValidationVisible(false);
+					saveButton.setEnabled(true);
+				}
+			}
+		}
+
+		private Date asTime(Object fromValue) {
+			try {
+				return new SimpleDateFormat("hh:mm").parse((String) fromValue);
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 	}
 }

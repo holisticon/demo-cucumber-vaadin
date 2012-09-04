@@ -14,7 +14,7 @@ public class LoginPage extends VaadinPageObject {
         super(browser);
     }
 
-    public void loginAs(String username, String password) {
+    public void loginWith(String username, String password) {
         WebElement loginFrame = loginFrame();
         browser().switchTo().frame(loginFrame);
 

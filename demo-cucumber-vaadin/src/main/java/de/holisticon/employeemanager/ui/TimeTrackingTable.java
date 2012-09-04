@@ -13,13 +13,11 @@ public class TimeTrackingTable extends Table {
 
 	public TimeTrackingTable() {
 
-		setColumnWidth(TimeTrackingRecord.PROP_DATE, 80);
-		setColumnWidth(TimeTrackingRecord.PROP_TIME_FROM, 50);
-		setColumnWidth(TimeTrackingRecord.PROP_TIME_UNTIL, 50);
+		setColumnWidth(TimeTrackingRecord.PROP_TIME_FROM, 80);
+		setColumnWidth(TimeTrackingRecord.PROP_TIME_UNTIL, 80);
 		// setColumnWidth(TimeTrackingRecord.PROP_DESCRIPTION, 10);
 
 		// set nicer headers
-		setColumnHeader(TimeTrackingRecord.PROP_DATE, "Datum");
 		setColumnHeader(TimeTrackingRecord.PROP_TIME_FROM, "von");
 		setColumnHeader(TimeTrackingRecord.PROP_TIME_UNTIL, "bis");
 		setColumnHeader(TimeTrackingRecord.PROP_DESCRIPTION, "Tätigkeit");
@@ -32,7 +30,7 @@ public class TimeTrackingTable extends Table {
 		Object value = property.getValue();
 		if (value instanceof Date) {
 			Date dateValue = (Date) value;
-			return new SimpleDateFormat("dd.MM.yyyy").format(dateValue);
+			return new SimpleDateFormat("dd.MM.yyyy hh:mm").format(dateValue);
 		}
 		return super.formatPropertyValue(rowId, colId, property);
 	}

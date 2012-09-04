@@ -18,7 +18,7 @@ public class LoginFeatureSteps {
 	@When("^I login with username '(.*)' and password '(.*)'$")
 	public void loginAs(String username, String password) throws Throwable {
 		application().waitForRendering();
-		loginPage().loginAs(username, password);
+		loginPage().loginWith(username, password);
 	}
 
 	@Given("^known credentials '(.*)' '(.*)'$")

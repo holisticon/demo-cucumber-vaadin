@@ -1,33 +1,34 @@
 package de.holisticon.demo.steps;
 
 import static de.holisticon.demo.TestContext.application;
+import static de.holisticon.demo.TestContext.containsRows;
+import static de.holisticon.demo.TestContext.displaysTrayNotification;
 import static de.holisticon.demo.TestContext.mainPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matcher;
 
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
+import cucumber.runtime.PendingException;
 import cucumber.table.DataTable;
 import de.holisticon.demo.pageobject.TimeTrackingEditorPageObject;
 import de.holisticon.demo.pageobject.VaadinTablePageObject;
 
-public class EditTimeTrackingRecordSteps {
+public class TrackWorkingTimesFeatureSteps {
 
-	@When("^I record an entry for '(.*)' on '(.*)' from '(.*)' to '(.*)'$")
+	@When("^I record an entry for (.*) on (.*) from (.*) to (.*)$")
 	public void recordAnEntry(String description, String date, String timeFrom, String timeUntil) throws Throwable {
 
 		application().waitForRendering();
 		TimeTrackingEditorPageObject editor = mainPage().openTimeTrackingEditor();
 
 		application().waitForRendering();
-		editor.fillDate(date)
-				.fillDescription(description)
-				.fillTimeFrom(timeFrom)
+		editor.fillTimeFrom(timeFrom)
 				.fillTimeUntil(timeUntil)
+				.fillDescription(description)
 				.saveRecord();
 	}
 
@@ -44,7 +45,15 @@ public class EditTimeTrackingRecordSteps {
 		assertThat(actualRows, containsRows(expectedRows));
 	}
 
-	private static Matcher<List<List<String>>> containsRows(final List<List<String>> expected) {
-		return new VaadinTableContentMatcher(expected);
+	@Then("^a notification '(.*)' appears$")
+	public void showsTrayNotification(String message) throws Throwable {
+		application().waitForRendering();
+		assertThat(application().browser(), displaysTrayNotification(message));
+	}
+
+	@Then("^form displays validation error (.*) sein$")
+	public void formDisplaysValidationError(String validationError) throws Throwable {
+		mainPage().timeTrackingEditor();
+		throw new PendingException();
 	}
 }

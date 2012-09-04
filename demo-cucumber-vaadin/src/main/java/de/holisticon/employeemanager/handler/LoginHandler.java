@@ -5,11 +5,13 @@ import com.vaadin.ui.LoginForm.LoginEvent;
 
 import de.holisticon.demo.MyVaadinApplication;
 import de.holisticon.employeemanager.service.UserManagementService;
+import de.holisticon.employeemanager.ui.MainComponent;
+import de.holisticon.employeemanager.ui.MessageBox;
 
 public class LoginHandler {
 
 	private final MyVaadinApplication application;
-	
+
 	private UserManagementService userManagementService = new UserManagementService();
 
 	public LoginHandler(MyVaadinApplication application) {
@@ -20,13 +22,13 @@ public class LoginHandler {
 	public void processLogin(LoginEvent loginEvent) {
 		String username = loginEvent.getLoginParameter("username");
 		String password = loginEvent.getLoginParameter("password");
-		
-		if(userManagementService.exists(username, password)){
-			application.login();
+
+		if (userManagementService.exists(username, password)) {
+			application.getMainWindow().setContent(new MainComponent());
 		}
 		else {
-			application.loginDenied();
+			MessageBox.showError(application.getMainWindow(), "unbekannter user");
 		}
 	}
-	
+
 }

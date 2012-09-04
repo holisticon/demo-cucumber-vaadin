@@ -1,15 +1,15 @@
-package de.holisticon.demo.steps;
+package de.holisticon.demo.matcher;
 
 import java.util.List;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
-final class VaadinTableContentMatcher extends TypeSafeMatcher<List<List<String>>> {
+public class VaadinTableContentMatcher extends TypeSafeMatcher<List<List<String>>> {
 	private final List<List<String>> expected;
 	private String message;
 
-	VaadinTableContentMatcher(List<List<String>> expected) {
+	public VaadinTableContentMatcher(List<List<String>> expected) {
 		this.expected = expected;
 	}
 
@@ -35,7 +35,8 @@ final class VaadinTableContentMatcher extends TypeSafeMatcher<List<List<String>>
 				String actualValue = actual.get(rowIdx).get(fieldIdx);
 				String expectedValue = expected.get(rowIdx).get(fieldIdx);
 				boolean asExpected = actualValue.equals(expectedValue);
-//				System.out.println(actualValue + " = " + expectedValue + " : " + asExpected);
+				// System.out.println(actualValue + " = " + expectedValue +
+				// " : " + asExpected);
 				if (!asExpected) {
 					message = "table contents are not as expected";
 					return false;

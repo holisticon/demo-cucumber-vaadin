@@ -17,12 +17,6 @@ public class TimeTrackingEditorPageObject extends VaadinPageObject {
 		return this;
 	}
 
-	public TimeTrackingEditorPageObject fillDate(String date) {
-		findById("_dateField").findElement(By.tagName("input")).sendKeys(date);
-		return this;
-	}
-
-
 	public TimeTrackingEditorPageObject fillTimeFrom(String timeFrom) {
 		findById("_timeFromField").sendKeys(timeFrom);
 		return this;

@@ -16,14 +16,14 @@
 package de.holisticon.demo;
 
 
+import java.util.Locale;
+
 import com.vaadin.Application;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Window.Notification;
 
 import de.holisticon.employeemanager.handler.LoginHandler;
 import de.holisticon.employeemanager.handler.LogoutHandler;
 import de.holisticon.employeemanager.ui.LoginComponent;
-import de.holisticon.employeemanager.ui.MainComponent;
 
 /**
  * The Application's "main" class
@@ -36,7 +36,7 @@ public class MyVaadinApplication extends Application
     @Override
     public void init()
     {
-    	
+
     	ApplicationEventBus.register(new LoginHandler(this));
     	ApplicationEventBus.register(new LogoutHandler(this));
     	
@@ -45,14 +45,6 @@ public class MyVaadinApplication extends Application
 
         window.setContent(new LoginComponent());
     }
-
-	public void login() {
-		window.setContent(new MainComponent());
-	}
-
-	public void loginDenied() {
-		window.showNotification("unbekannter user", Notification.TYPE_ERROR_MESSAGE);
-	}
 
 	public void logout() {
 		window.setContent(new LoginComponent());
