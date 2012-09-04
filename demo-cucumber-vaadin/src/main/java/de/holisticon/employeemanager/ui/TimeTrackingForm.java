@@ -100,11 +100,13 @@ public class TimeTrackingForm extends Form {
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_FROM)) {
 				timeFromField = new TimeField("von", "08:00");
 				timeFromField.setDebugId("_timeFromField");
+//				timeFromField.addListener(new TimeRangeValidator());
 				return timeFromField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_UNTIL)) {
 				timeUntilField = new TimeField("bis", "16:30");
 				timeUntilField.setDebugId("_timeUntilField");
+//				timeUntilField.addListener(new TimeRangeValidator());
 				return timeUntilField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_DESCRIPTION)) {
