@@ -1,4 +1,4 @@
-package de.holisticon.emapp.step;
+package de.holisticon.emapp.step.complete;
 
 import static de.holisticon.emapp.EmployeeManagerContext.application;
 import static de.holisticon.emapp.EmployeeManagerContext.mainPage;

@@ -1,11 +1,11 @@
-package de.holisticon.emapp.step;
+package de.holisticon.emapp.step.complete;
 
 import static de.holisticon.emapp.EmployeeManagerContext.application;
 import cucumber.annotation.After;
 import cucumber.annotation.Before;
 import cucumber.runtime.ScenarioResult;
 
-public class GlobalApplicationSteps {
+public class FixtureSteps {
 
 	@Before
 	public void setUp() {
