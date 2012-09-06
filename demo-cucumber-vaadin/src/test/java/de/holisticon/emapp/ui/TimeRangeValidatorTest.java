@@ -14,7 +14,7 @@ import de.holisticon.emapp.ui.TimeTrackingForm.TimeRangeValidator;
 public class TimeRangeValidatorTest {
 
 	@Test
-	public void shouldReturnTrueForValidTimeRange() throws Exception {
+	public void shouldReturnTrueForStarttimeBeforeEndtime() throws Exception {
 		String from = "08:00";
 		String until = "16:30";
 
@@ -24,7 +24,7 @@ public class TimeRangeValidatorTest {
 	}
 
 	@Test
-	public void shouldReturnFalseForInvalidTimeRange() throws Exception {
+	public void shouldReturnFalseForStarttimeAfterEndtime() throws Exception {
 		String from = "08:00";
 		String until = "07:00";
 
@@ -34,7 +34,7 @@ public class TimeRangeValidatorTest {
 	}
 
 	@Test
-	public void shouldReturnFalseForIdenticalTimes() throws Exception {
+	public void shouldReturnFalseForEqualTimes() throws Exception {
 		String from = "08:00";
 		String until = "08:00";
 		
