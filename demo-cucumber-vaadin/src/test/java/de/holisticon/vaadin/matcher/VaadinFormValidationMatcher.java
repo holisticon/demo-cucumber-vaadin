@@ -1,4 +1,4 @@
-package de.holisticon.emapp.ui;
+package de.holisticon.vaadin.matcher;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 

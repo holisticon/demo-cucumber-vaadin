@@ -5,7 +5,6 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.WebDriver;
 
-import de.holisticon.emapp.ui.VaadinFormValidationMatcher;
 
 public class VaadinPageMatchers {
 

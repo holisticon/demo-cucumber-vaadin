@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import de.holisticon.vaadin.pageobject.VaadinFormPageObject;
 import de.holisticon.vaadin.pageobject.VaadinPageObject;
 
 public class TimeTrackingEditorPageObject extends VaadinPageObject {
