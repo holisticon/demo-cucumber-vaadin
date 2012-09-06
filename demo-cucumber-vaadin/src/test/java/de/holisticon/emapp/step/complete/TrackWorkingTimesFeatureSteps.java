@@ -2,16 +2,13 @@ package de.holisticon.emapp.step.complete;
 
 import static de.holisticon.emapp.EmployeeManagerContext.application;
 import static de.holisticon.emapp.EmployeeManagerContext.mainPage;
+import static de.holisticon.vaadin.matcher.VaadinPageMatchers.displaysTrayNotification;
+import static de.holisticon.vaadin.matcher.VaadinPageMatchers.displaysValidationError;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.hamcrest.CoreMatchers;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
@@ -29,7 +26,8 @@ public class TrackWorkingTimesFeatureSteps {
 		TimeTrackingEditorPageObject editor = mainPage().openTimeTrackingEditor();
 
 		application().waitForRendering();
-		editor.fillTimeFrom(timeFrom)
+		editor.fillDate(date)
+				.fillTimeFrom(timeFrom)
 				.fillTimeUntil(timeUntil)
 				.fillDescription(description)
 				.saveRecord();
@@ -50,18 +48,13 @@ public class TrackWorkingTimesFeatureSteps {
 
 	@Then("^a notification '(.*)' appears$")
 	public void showsTrayNotification(String message) throws Throwable {
-		application().waitForRendering();
-		assertThat(application().browser(), VaadinPageMatchers.displaysTrayNotification(message));
+		application().waitSeconds(5);
+		assertThat(application().browser(), displaysTrayNotification(message));
 	}
 
 	@Then("^form displays validation error (.*)$")
 	public void displaysErrorMessage(String expectedMessage) throws Throwable {
-		try {
-			WebElement errMsg = application().browser().findElement(By.className("v-form-errormessage"));
-			assertThat(errMsg.getText(), is(expectedMessage));
-		} catch (NoSuchElementException ex) {
-			fail("error message not displayed");
-		}
+		assertThat(mainPage().timeTrackingEditor().form(), displaysValidationError(expectedMessage));
 	}
 
 }

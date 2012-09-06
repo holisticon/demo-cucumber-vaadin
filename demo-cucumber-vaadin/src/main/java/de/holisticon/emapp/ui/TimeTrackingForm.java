@@ -44,15 +44,17 @@ public class TimeTrackingForm extends Form {
 
 		// validation
 		setValidationVisible(false);
+//		timeFromField.addListener(new TimeRangeValidator());
+//		timeUntilField.addListener(new TimeRangeValidator());
+		
 
 	}
 
 	@Override
 	public void attach() {
-		// TODO Auto-generated method stub
 		super.attach();
-		timeFromField.addListener(new TimeRangeValidator());
-		timeUntilField.addListener(new TimeRangeValidator());
+//		timeFromField.addListener(new TimeRangeValidator());
+//		timeUntilField.addListener(new TimeRangeValidator());
 	}
 
 	@Override
@@ -92,6 +94,8 @@ public class TimeTrackingForm extends Form {
 			if (pid.equals(TimeTrackingRecord.PROP_DATE)) {
 				DateField dateField = new DateField("Datum");
 				dateField.setDateFormat("dd.MM.yyyy");
+				dateField.setRequired(true);
+				dateField.setRequiredError("Datum muss angegeben werden");
 				dateField.setLenient(true);
 				dateField.setResolution(DateField.RESOLUTION_DAY);
 				dateField.setDebugId("_dateField");
@@ -100,13 +104,15 @@ public class TimeTrackingForm extends Form {
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_FROM)) {
 				timeFromField = new TimeField("von", "08:00");
 				timeFromField.setDebugId("_timeFromField");
-				// timeFromField.addListener(new TimeRangeValidator());
+				timeFromField.setRequired(true);
+				timeFromField.setRequiredError("Anfangszeit muss angegeben werden");
 				return timeFromField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_TIME_UNTIL)) {
 				timeUntilField = new TimeField("bis", "16:30");
 				timeUntilField.setDebugId("_timeUntilField");
-				// timeUntilField.addListener(new TimeRangeValidator());
+				timeUntilField.setRequired(true);
+				timeUntilField.setRequiredError("Endzeit muss angegeben werden");
 				return timeUntilField;
 			}
 			if (pid.equals(TimeTrackingRecord.PROP_DESCRIPTION)) {
@@ -135,7 +141,7 @@ public class TimeTrackingForm extends Form {
 			if (fromValue != null && untilValue != null) {
 				long from = asTime(fromValue).getTime();
 				long until = asTime(untilValue).getTime();
-				boolean timeRangeNotValid = ((until - from) < 0);
+				boolean timeRangeNotValid = ((until - from) <= 0);
 				if (timeRangeNotValid) {
 					setComponentError(new UserError("Startzeit muss vor Endzeit liegen"));
 					saveButton.setEnabled(false);

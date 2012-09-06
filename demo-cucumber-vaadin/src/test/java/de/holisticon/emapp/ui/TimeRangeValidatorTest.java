@@ -33,6 +33,19 @@ public class TimeRangeValidatorTest {
 		assertThat(result, evaluatesToFalseFor(from, until));
 	}
 
+	@Test
+	public void shouldReturnFalseForIdenticalTimes() throws Exception {
+		String from = "08:00";
+		String until = "08:00";
+		
+		TimeRangeValidator validator = givenValidatorForTimeFieldValues(from, until);
+		boolean result = whenValidatingWith(validator);
+		assertThat(result, evaluatesToFalseFor(from, until));
+	}
+
+	
+	
+	
 	private static Matcher<? super Boolean> evaluatesToTrueFor(final String from, final String until) {
 		return new TimeRangeResultMatcher(until, from, true);
 	}

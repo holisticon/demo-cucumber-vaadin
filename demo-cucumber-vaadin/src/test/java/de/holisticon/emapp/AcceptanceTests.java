@@ -6,8 +6,8 @@ import cucumber.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @Cucumber.Options(
-		features = AcceptanceTests.FEATURES_DEMO,
-		glue = AcceptanceTests.STEPS_DEMO,
+		features = AcceptanceTests.FEATURES_COMPLETE,
+		glue = AcceptanceTests.STEPS_COMPLETE,
 		format = { "json:target/cucumber.json", "pretty", "html:target/cucumber-html" },
 		monochrome = true)
 public class AcceptanceTests {
@@ -17,4 +17,5 @@ public class AcceptanceTests {
 
 	static final String FEATURES_COMPLETE = "src/test/features/complete";
 	static final String STEPS_COMPLETE = "de.holisticon.emapp.step.complete";
+
 }

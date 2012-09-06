@@ -161,6 +161,8 @@ public class TimeTrackingEditor extends CustomComponent {
 				TimeTrackingRecord.PROP_TIME_FROM,
 				TimeTrackingRecord.PROP_TIME_UNTIL,
 				TimeTrackingRecord.PROP_DESCRIPTION });
+		
+		setDebugId("_timeTrackingEditor");
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class MainPage extends VaadinPageObject {
 	}
 
 	public TimeTrackingEditorPageObject timeTrackingEditor() {
-		if (containsId("_timeTrackingForm")) {
+		if (containsId("_timeTrackingEditor")) {
 			return new TimeTrackingEditorPageObject(application().browser());
 		}
 		throw new IllegalStateException("time tracking form not at display");
