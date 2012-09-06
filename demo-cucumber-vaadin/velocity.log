@@ -1,29 +1,29 @@
-Tue Sep 04 20:42:39 CEST 2012  [debug] AvalonLogChute initialized using file 'velocity.log'
-Tue Sep 04 20:42:39 CEST 2012  [trace] *******************************************************************
-Tue Sep 04 20:42:39 CEST 2012  [debug] Starting Jakarta Velocity v1.5-SNAPSHOT (compiled: 2006-07-21 06:25:35)
-Tue Sep 04 20:42:39 CEST 2012  [trace] RuntimeInstance initializing.
-Tue Sep 04 20:42:39 CEST 2012  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
-Tue Sep 04 20:42:39 CEST 2012  [debug] Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-Tue Sep 04 20:42:39 CEST 2012  [debug] Using logger class org.apache.velocity.runtime.log.AvalonLogChute
-Tue Sep 04 20:42:39 CEST 2012  [debug] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
-Tue Sep 04 20:42:39 CEST 2012  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-Tue Sep 04 20:42:39 CEST 2012  [trace] ClasspathResourceLoader : initialization complete.
-Tue Sep 04 20:42:39 CEST 2012  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
-Tue Sep 04 20:42:39 CEST 2012  [trace] Default ResourceManager initialization complete.
-Tue Sep 04 20:42:39 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-Tue Sep 04 20:42:39 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-Tue Sep 04 20:42:39 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-Tue Sep 04 20:42:39 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
-Tue Sep 04 20:42:39 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-Tue Sep 04 20:42:39 CEST 2012  [debug] Created '20' parsers.
-Tue Sep 04 20:42:39 CEST 2012  [trace] Velocimacro : initialization starting.
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : Default library not found.
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-Tue Sep 04 20:42:39 CEST 2012  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
-Tue Sep 04 20:42:39 CEST 2012  [trace] Velocimacro : initialization complete.
-Tue Sep 04 20:42:39 CEST 2012  [trace] RuntimeInstance successfully initialized.
-Tue Sep 04 20:42:39 CEST 2012  [debug] ResourceManager : found templates/tagOverview.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-Tue Sep 04 20:42:39 CEST 2012   [info] Null reference [template 'templates/tagOverview.vm', line 41, column 28] : $chart_rows cannot be resolved.
+Thu Sep 06 12:26:27 CEST 2012  [debug] AvalonLogChute initialized using file 'velocity.log'
+Thu Sep 06 12:26:27 CEST 2012  [trace] *******************************************************************
+Thu Sep 06 12:26:27 CEST 2012  [debug] Starting Jakarta Velocity v1.5-SNAPSHOT (compiled: 2006-07-21 06:25:35)
+Thu Sep 06 12:26:27 CEST 2012  [trace] RuntimeInstance initializing.
+Thu Sep 06 12:26:27 CEST 2012  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+Thu Sep 06 12:26:27 CEST 2012  [debug] Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+Thu Sep 06 12:26:27 CEST 2012  [debug] Using logger class org.apache.velocity.runtime.log.AvalonLogChute
+Thu Sep 06 12:26:27 CEST 2012  [debug] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+Thu Sep 06 12:26:27 CEST 2012  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+Thu Sep 06 12:26:27 CEST 2012  [trace] ClasspathResourceLoader : initialization complete.
+Thu Sep 06 12:26:27 CEST 2012  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+Thu Sep 06 12:26:27 CEST 2012  [trace] Default ResourceManager initialization complete.
+Thu Sep 06 12:26:27 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+Thu Sep 06 12:26:27 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+Thu Sep 06 12:26:27 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+Thu Sep 06 12:26:27 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+Thu Sep 06 12:26:27 CEST 2012  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+Thu Sep 06 12:26:27 CEST 2012  [debug] Created '20' parsers.
+Thu Sep 06 12:26:27 CEST 2012  [trace] Velocimacro : initialization starting.
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : Default library not found.
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+Thu Sep 06 12:26:27 CEST 2012  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+Thu Sep 06 12:26:27 CEST 2012  [trace] Velocimacro : initialization complete.
+Thu Sep 06 12:26:27 CEST 2012  [trace] RuntimeInstance successfully initialized.
+Thu Sep 06 12:26:27 CEST 2012  [debug] ResourceManager : found templates/tagOverview.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+Thu Sep 06 12:26:27 CEST 2012   [info] Null reference [template 'templates/tagOverview.vm', line 41, column 28] : $chart_rows cannot be resolved.

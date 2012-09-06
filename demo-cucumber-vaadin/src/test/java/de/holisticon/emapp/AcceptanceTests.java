@@ -6,8 +6,8 @@ import cucumber.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @Cucumber.Options(
-		features = AcceptanceTests.FEATURES_COMPLETE,
-		glue = AcceptanceTests.STEPS_COMPLETE,
+		features = AcceptanceTests.FEATURES_DEMO,
+		glue = AcceptanceTests.STEPS_DEMO,
 		format = { "json:target/cucumber.json", "pretty", "html:target/cucumber-html" },
 		monochrome = true)
 public class AcceptanceTests {
