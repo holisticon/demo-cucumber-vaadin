@@ -17,7 +17,7 @@
     <build>
         <directory>target</directory>
         <outputDirectory>target/classes</outputDirectory>
-        <finalName>${artifactId}-${version}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <testOutputDirectory>target/test-classes</testOutputDirectory>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
@@ -37,6 +37,7 @@
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
+                <version>2.0.2</version>
             </plugin>
 
             <!-- A simple Jetty test server at http://localhost:8080/demo-cucumber-vaadin-app
