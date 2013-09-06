@@ -16,6 +16,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.runtime.ScenarioResult;
+import de.holisticon.emapp.TestServer;
 import de.holisticon.emapp.pageobject.LoginPage;
 
 public class ApplicationDriver extends ExternalResource {
@@ -41,6 +42,7 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public LoginPage start() {
+		TestServer.INSTANCE.start();
 		browser().get(config.applicationUrl());
 		return new LoginPage(browser);
 	}
@@ -48,11 +50,12 @@ public class ApplicationDriver extends ExternalResource {
 	public WebDriver browser() {
 		if (browser == null) {
 			if (runHeadless()) {
-				FirefoxBinary binary = new FirefoxBinary(new File(config.pathToBrowser()));
-				binary.setEnvironmentProperty(SYSTEM_VIRTUAL_DISPLAY_VARIABLE, config.display());
+				FirefoxBinary binary = new FirefoxBinary(new File(
+						config.pathToBrowser()));
+				binary.setEnvironmentProperty(SYSTEM_VIRTUAL_DISPLAY_VARIABLE,
+						config.display());
 				browser = new FirefoxDriver(binary, null);
-			}
-			else {
+			} else {
 				browser = new FirefoxDriver();
 			}
 		}
@@ -60,10 +63,12 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	public ApplicationDriver close() {
+
 		if (browser != null) {
 			browser.close();
 			browser = null;
 		}
+		TestServer.INSTANCE.stop();
 		return this;
 	}
 
@@ -93,10 +98,12 @@ public class ApplicationDriver extends ExternalResource {
 
 	private void takeScreenshotOf(ScenarioResult result) {
 		try {
-			byte[] screenshot = ((TakesScreenshot) browser()).getScreenshotAs(OutputType.BYTES);
+			byte[] screenshot = ((TakesScreenshot) browser())
+					.getScreenshotAs(OutputType.BYTES);
 			result.embed(screenshot, "image/png");
 		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
-			System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+			System.err
+					.println(somePlatformsDontSupportScreenshots.getMessage());
 		}
 	}
 
