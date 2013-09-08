@@ -1,17 +1,16 @@
 package de.holisticon.emapp.step.complete;
 
-import static de.holisticon.emapp.EmployeeManagerContext.application;
-import static de.holisticon.emapp.EmployeeManagerContext.loginPage;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en_au.When;
 import de.holisticon.emapp.pageobject.LoginPage;
 import de.holisticon.emapp.pageobject.MainPage;
+
+import static de.holisticon.emapp.EmployeeManagerContext.application;
+import static de.holisticon.emapp.EmployeeManagerContext.loginPage;
+import static de.holisticon.vaadin.asserts.CustomFestAssertions.assertThat;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class LoginFeatureSteps {
 
@@ -29,7 +28,7 @@ public class LoginFeatureSteps {
 
 	@Then("^I get access to the editor.$")
 	public void loginSuccessful() throws Throwable {
-		assertThat(application().currentPage(), is(instanceOf(MainPage.class)));
+		assertThat(application().currentPage()).isInstanceOf(MainPage.class);
 	}
 
 	@Given("^unknown credentials '(.*)' '(.*)'$")
@@ -41,7 +40,7 @@ public class LoginFeatureSteps {
 	@Then("^the login is denied$")
 	public void loginDenied() throws Throwable {
 		application().waitForRendering();
-		assertThat(application().currentPage(), is(instanceOf(LoginPage.class)));
+		assertThat(application().currentPage()).isInstanceOf(LoginPage.class);
 	}
 
 	@Then("^it displays an error message '(.*)'$")
