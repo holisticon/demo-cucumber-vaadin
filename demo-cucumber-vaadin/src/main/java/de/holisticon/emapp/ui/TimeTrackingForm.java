@@ -1,11 +1,5 @@
 package de.holisticon.emapp.ui;
 
-import static java.util.Arrays.asList;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.terminal.UserError;
@@ -18,10 +12,15 @@ import com.vaadin.ui.Form;
 import com.vaadin.ui.FormFieldFactory;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
-
 import de.holisticon.emapp.ApplicationEventBus;
 import de.holisticon.emapp.event.NewTimeTrackingRecordEvent;
 import de.holisticon.emapp.model.TimeTrackingRecord;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static java.util.Arrays.asList;
 
 @SuppressWarnings("serial")
 public class TimeTrackingForm extends Form {
@@ -53,8 +52,8 @@ public class TimeTrackingForm extends Form {
 	@Override
 	public void attach() {
 		super.attach();
-//		timeFromField.addListener(new TimeRangeValidator());
-//		timeUntilField.addListener(new TimeRangeValidator());
+		timeFromField.addListener(new TimeRangeValidator());
+		timeUntilField.addListener(new TimeRangeValidator());
 	}
 
 	@Override

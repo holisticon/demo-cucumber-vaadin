@@ -2,9 +2,10 @@ package de.holisticon.emapp.handler;
 
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.ui.LoginForm.LoginEvent;
-
 import de.holisticon.emapp.EmployeeManagerApp;
 import de.holisticon.emapp.service.UserManagementService;
+import de.holisticon.emapp.ui.MainComponent;
+import de.holisticon.emapp.ui.MessageBox;
 
 public class LoginHandler {
 
@@ -22,10 +23,10 @@ public class LoginHandler {
 		String password = loginEvent.getLoginParameter("password");
 
 		if (userManagementService.exists(username, password)) {
-//			application.getMainWindow().setContent(new MainComponent());
+			application.getMainWindow().setContent(new MainComponent());
 		}
 		else {
-//			MessageBox.showError(application.getMainWindow(), "unbekannter user");
+			MessageBox.showError(application.getMainWindow(), "unbekannter user");
 		}
 	}
 

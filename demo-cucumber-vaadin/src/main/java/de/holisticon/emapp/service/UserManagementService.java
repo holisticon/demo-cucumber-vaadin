@@ -1,17 +1,17 @@
 package de.holisticon.emapp.service;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class UserManagementService {
 
-	public static final String DEFAULT_CONFIG_PROPS = "src/main/resources/users.properties";
+	public static final String DEFAULT_CONFIG_PROPS = "users.properties";
 	private Properties users;
 
 	public UserManagementService() {
 		try {
 			users = new Properties();
-			FileInputStream fis = new FileInputStream(DEFAULT_CONFIG_PROPS);
+			final InputStream fis = getClass().getClassLoader().getResourceAsStream(DEFAULT_CONFIG_PROPS);
 			users.load(fis);
 			fis.close();
 		} catch (Exception e) {
