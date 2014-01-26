@@ -110,12 +110,6 @@
 						<goals>
 							<goal>generate</goal>
 						</goals>
-						<configuration>
-							<projectName>demo-cucumber-vaadin</projectName>
-							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-							<enableFlashCharts>false</enableFlashCharts>
-						</configuration>
 					</execution>
 				</executions>
 				<dependencies>
