@@ -21,6 +21,10 @@
 		<selenium.version>2.39.0</selenium.version>
 	</properties>
 
+	<prerequisites>
+		<maven>3.0.5</maven>
+	</prerequisites>
+
 	<build>
 		<testResources>
 			<testResource>
@@ -32,13 +36,16 @@
 		</testResources>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
 			</plugin>
 
 			<!-- A simple Jetty test server at http://localhost:8080/demo-cucumber-vaadin-app 
@@ -50,7 +57,7 @@
 				<configuration>
 					<stopPort>9966</stopPort>
 					<stopKey>stop</stopKey>
-					<!-- Redeploy every x seconds if changes are detected, 0 for no automatic 
+					<!-- Redeploy every x seconds if changes are detected, 0 for no automatic
 						redeployment -->
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<!-- make sure Jetty also finds the widgetset -->
@@ -64,6 +71,10 @@
 						</baseResource>
 					</webAppConfig>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
