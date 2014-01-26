@@ -1,7 +1,8 @@
 package de.holisticon.emapp;
 
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 public class TestServer {
 
@@ -11,7 +12,7 @@ public class TestServer {
 
 	private TestServer(final int port, final String resources, final String context) {
 		server = new Server(port);
-		server.addHandler(new WebAppContext(resources, context));
+		server.setHandler(new WebAppContext(resources, context));
 	}
 
 	public void start(){
