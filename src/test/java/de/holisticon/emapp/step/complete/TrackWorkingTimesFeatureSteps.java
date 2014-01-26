@@ -1,8 +1,8 @@
 package de.holisticon.emapp.step.complete;
 
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
-import cucumber.table.DataTable;
+import cucumber.api.DataTable;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import de.holisticon.emapp.pageobject.TimeTrackingEditorPageObject;
 import de.holisticon.vaadin.asserts.VaadinTableContentAssert;
 import de.holisticon.vaadin.pageobject.VaadinTablePageObject;

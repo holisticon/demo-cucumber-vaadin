@@ -1,8 +1,8 @@
 package de.holisticon.emapp.step.complete;
 
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en_au.When;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import de.holisticon.emapp.pageobject.LoginPage;
 import de.holisticon.emapp.pageobject.MainPage;
 

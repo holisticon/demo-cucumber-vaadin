@@ -1,9 +1,10 @@
 package de.holisticon.emapp.step.complete;
 
 import static de.holisticon.emapp.EmployeeManagerContext.application;
-import cucumber.annotation.After;
-import cucumber.annotation.Before;
-import cucumber.runtime.ScenarioResult;
+
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 
 public class FixtureSteps {
 
@@ -13,10 +14,8 @@ public class FixtureSteps {
 	}
 
 	@After
-	public void cleanUp(ScenarioResult result) {
-		application().processFailureIn(result);
+	public void cleanUp(Scenario scenario) {
+		application().processFailureIn(scenario);
 		application().close();
 	}
-
-
 }

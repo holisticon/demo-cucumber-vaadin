@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.io.File;
 
+import cucumber.api.Scenario;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,7 +16,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import cucumber.runtime.ScenarioResult;
 import de.holisticon.emapp.TestServer;
 import de.holisticon.emapp.pageobject.LoginPage;
 
@@ -72,9 +72,9 @@ public class ApplicationDriver extends ExternalResource {
 		return this;
 	}
 
-	public ApplicationDriver processFailureIn(ScenarioResult result) {
-		if (result.getStatus().equals("failed")) {
-			takeScreenshotOf(result);
+	public ApplicationDriver processFailureIn(Scenario scenario) {
+		if (scenario.getStatus().equals("failed")) {
+			takeScreenshotOf(scenario);
 		}
 		return this;
 	}
@@ -96,11 +96,11 @@ public class ApplicationDriver extends ExternalResource {
 		return isNotEmpty(config.display());
 	}
 
-	private void takeScreenshotOf(ScenarioResult result) {
+	private void takeScreenshotOf(Scenario scenario) {
 		try {
 			byte[] screenshot = ((TakesScreenshot) browser())
 					.getScreenshotAs(OutputType.BYTES);
-			result.embed(screenshot, "image/png");
+			scenario.embed(screenshot, "image/png");
 		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
 			System.err
 					.println(somePlatformsDontSupportScreenshots.getMessage());
