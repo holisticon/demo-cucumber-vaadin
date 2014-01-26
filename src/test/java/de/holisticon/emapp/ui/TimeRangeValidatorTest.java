@@ -10,16 +10,16 @@ import static org.mockito.Mockito.when;
 
 public class TimeRangeValidatorTest {
 
-    public static final String CUSTOM_ERROR_MESSAGE = "time range from %s to %s should be %s";
+	public static final String CUSTOM_ERROR_MESSAGE = "time range from %s to %s should be %s";
 
-    @Test
+	@Test
 	public void shouldReturnTrueForStarttimeBeforeEndtime() throws Exception {
 		String from = "08:00";
 		String until = "16:30";
 		TimeRangeValidator validator = givenValidatorForTimeFieldValues(from, until);
 		boolean result = whenValidatingWith(validator);
 		assertThat(result).overridingErrorMessage(String.format(CUSTOM_ERROR_MESSAGE,
-                from,until,"valid")).isTrue();
+				from, until, "valid")).isTrue();
 	}
 
 	@Test
@@ -29,18 +29,18 @@ public class TimeRangeValidatorTest {
 		TimeRangeValidator validator = givenValidatorForTimeFieldValues(from, until);
 		boolean result = whenValidatingWith(validator);
 		assertThat(result).overridingErrorMessage(String.format(CUSTOM_ERROR_MESSAGE,
-                from,until,"invalid")).isFalse();
+				from, until, "invalid")).isFalse();
 	}
 
 	@Test
 	public void shouldReturnFalseForEqualTimes() throws Exception {
 		String from = "08:00";
 		String until = "08:00";
-		
+
 		TimeRangeValidator validator = givenValidatorForTimeFieldValues(from, until);
 		boolean result = whenValidatingWith(validator);
 		assertThat(result).overridingErrorMessage(String.format(CUSTOM_ERROR_MESSAGE,
-                from,until,"invalid")).isFalse();
+				from, until, "invalid")).isFalse();
 	}
 
 	private boolean whenValidatingWith(TimeRangeValidator validator) {
@@ -59,7 +59,4 @@ public class TimeRangeValidatorTest {
 		when(timeFrom.getValue()).thenReturn(value);
 		return timeFrom;
 	}
-
-
-
 }

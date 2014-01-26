@@ -22,7 +22,5 @@ public class EmployeeManagerDriver extends ApplicationDriver {
 		}
 
 		throw new IllegalStateException("invalid display state, only mainpage or loginpage are allowed");
-
 	}
-
 }

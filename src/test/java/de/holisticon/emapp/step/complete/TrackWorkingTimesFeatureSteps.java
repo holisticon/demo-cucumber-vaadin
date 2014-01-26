@@ -52,5 +52,4 @@ public class TrackWorkingTimesFeatureSteps {
 	public void displaysErrorMessage(String expectedMessage) throws Throwable {
 		assertThat(mainPage().timeTrackingEditor().form()).displaysValidationError(expectedMessage);
 	}
-
 }

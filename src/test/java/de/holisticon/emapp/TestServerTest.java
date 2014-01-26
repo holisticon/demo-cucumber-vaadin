@@ -13,7 +13,5 @@ public class TestServerTest {
 		server.start();
 		assertThat(server.isRunning()).isTrue();
 		server.stop();
-
 	}
-
 }

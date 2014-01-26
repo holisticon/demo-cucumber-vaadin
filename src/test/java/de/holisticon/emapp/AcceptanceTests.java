@@ -17,5 +17,4 @@ public class AcceptanceTests {
 
 	static final String FEATURES_COMPLETE = "src/test/features/complete";
 	static final String STEPS_COMPLETE = "de.holisticon.emapp.step.complete";
-
 }
