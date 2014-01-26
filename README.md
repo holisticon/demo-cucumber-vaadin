@@ -1,6 +1,9 @@
 Test Vaadin-Application with Cucumber and Selenium
 ==================================================
 
+## Build status
+[![Build Status](https://secure.travis-ci.org/holisticon/demo-cucumber-vaadin.png)](https://travis-ci.org/holisticon/demo-cucumber-vaadin)
+
 ## Getting started
 To test run cucumber integration tests:
 * on console:          'mvn verify'
