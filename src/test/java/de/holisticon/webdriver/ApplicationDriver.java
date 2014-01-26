@@ -1,9 +1,8 @@
 package de.holisticon.webdriver;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-
 import java.io.File;
 
+import com.google.common.base.Strings;
 import cucumber.api.Scenario;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.By;
@@ -93,7 +92,7 @@ public class ApplicationDriver extends ExternalResource {
 	}
 
 	private boolean runHeadless() {
-		return isNotEmpty(config.display());
+		return !Strings.isNullOrEmpty(config.display());
 	}
 
 	private void takeScreenshotOf(Scenario scenario) {
