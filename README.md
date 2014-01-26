@@ -1,5 +1,5 @@
-Test Vaadin-Application with Cucumber and Selenium
-==================================================
+Demo Vaadin-Application with Cucumber
+=====================================
 
 ## Build status
 [![Build Status](https://secure.travis-ci.org/holisticon/demo-cucumber-vaadin.png)](https://travis-ci.org/holisticon/demo-cucumber-vaadin)
